@@ -26,6 +26,12 @@ COPY . /app
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Copy environment file if it doesn't exist
+RUN if [ ! -f .env ]; then cp .env.example .env; fi
+
+# Generate application key if not set
+RUN php artisan key:generate --ansi
+
 # Set permissions
 RUN chown -R www-data:www-data /app \
     && chmod -R 755 /app/storage \
