@@ -1,0 +1,74 @@
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V4 */
+/* BCC campus palette and shared application tokens */
+:root {
+  --color-paper: #fbfaf5;
+  --color-paper-2: #f2f1e9;
+  --color-paper-3: #e8e8dd;
+  --color-ink: #111111;
+  --color-ink-2: #111111;
+  --color-muted: #111111;
+  --color-neutral: #111111;
+  --color-rule: #d9ded4;
+  --color-rule-2: #e7e9e1;
+  --color-accent: #15803d;
+  --color-accent-text: #111111;
+  --color-accent-strong: #166534;
+  --color-accent-soft: #e8f0e8;
+  --color-accent-ink: #ffffff;
+  --color-gold: #b98835;
+  --color-gold-soft: #f5eddc;
+  --color-focus: #356ad2;
+  --color-error: #111111;
+  --color-error-soft: #f8e9e6;
+  --color-success: #111111;
+  --color-success-soft: #e7f0e8;
+  --color-warning: #111111;
+  --color-warning-soft: #f6efdd;
+  --color-info: #111111;
+  --color-info-soft: #e8eff4;
+  --color-shadow: #18362b18;
+  --color-backdrop: #10291f80;
+  --color-sidebar: #15803d;
+  --color-sidebar-text: #ffffff;
+  --color-sidebar-muted: #ffffff;
+  --color-sidebar-hover: #ffffff12;
+  --color-sidebar-active: #f2e7ca;
+  --color-sidebar-active-ink: #111111;
+  --color-sidebar-rule: #ffffff24;
+
+  --font-display: "Poppins", "Segoe UI", Arial, sans-serif;
+  --font-body: "Poppins", "Segoe UI", Arial, sans-serif;
+  --font-mono: "Cascadia Code", Consolas, monospace;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-input-end: 2.5rem;
+  --space-sidebar: 16rem;
+
+  --text-xs: 0.875rem;
+  --text-sm: 1rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2.25rem;
+  --text-display-s: clamp(1.5rem, 2.5vw, 1.875rem);
+  --text-display: clamp(2rem, 4vw, 3.25rem);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-pill: 999px;
+  --rule-thin: 1px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 280ms;
+}

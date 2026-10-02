@@ -1,0 +1,21 @@
+@extends('layouts.app')
+
+@section('title', 'Grade encoding')
+@section('eyebrow', 'Registrar / Grades')
+
+@section('content')
+    <section class="page-heading-row"><div><p class="section-kicker">Academic records</p><h1 class="page-title">Grade encoding<span class="title-period">.</span></h1><p class="page-lede">Record term grades for subjects in approved enrollments.</p></div></section>
+    <section class="panel list-panel">
+        <form class="filter-row grade-filter" method="get" action="{{ route('registrar.grades') }}"><label class="field-label" for="student-filter">Filter by student</label><select class="form-control form-control-small" id="student-filter" name="student_id"><option value="">All students</option>@foreach ($students as $student)<option value="{{ $student->id }}" @selected($selectedStudentId === $student->id)>{{ $student->last_name }}, {{ $student->first_name }} · {{ $student->student_number }}</option>@endforeach</select><button class="button button-secondary button-small" type="submit">Apply filter</button></form>
+        @if ($grades->isNotEmpty())
+            <div class="table-wrap"><table class="responsive-table registrar-grades-table"><thead><tr><th>Student</th><th>Subject</th><th>Term</th><th>Prelim</th><th>Midterm</th><th>Final term</th><th>Final grade</th><th>Remarks</th><th>Encode</th></tr></thead><tbody>
+                @foreach ($grades as $grade)
+                    <tr><td><strong>{{ $grade->first_name }} {{ $grade->last_name }}</strong><small>{{ $grade->student_number }}</small></td><td><strong>{{ $grade->code }} · {{ $grade->title }}</strong><small>{{ $grade->program_code }}</small></td><td>{{ $grade->school_year }} · {{ $grade->semester }}</td><td>{{ $grade->preliminary ?? '—' }}</td><td>{{ $grade->midterm ?? '—' }}</td><td>{{ $grade->final_term ?? '—' }}</td><td><strong>{{ $grade->final_grade ?? '—' }}</strong></td><td><span class="status-badge status-{{ strtolower(str_replace(' ', '-', $grade->remarks ?? 'In progress')) }}">{{ $grade->remarks ?? 'In progress' }}</span></td><td><details class="review-details grade-details"><summary>{{ $grade->final_grade === null ? 'Encode' : 'Edit' }}</summary><form class="review-form grade-form" method="post" action="{{ route('registrar.grades.update', ['enrollment' => $grade->enrollment_id, 'subject' => $grade->subject_id]) }}">@csrf @method('PATCH')<p class="grade-form-title">Term grades · 1.00 to 5.00</p><label class="field-label" for="prelim-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}">Preliminary</label><input class="form-control form-control-small" id="prelim-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}" name="preliminary" type="number" min="1" max="5" step="0.01" value="{{ $grade->preliminary }}"><label class="field-label" for="midterm-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}">Midterm</label><input class="form-control form-control-small" id="midterm-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}" name="midterm" type="number" min="1" max="5" step="0.01" value="{{ $grade->midterm }}"><label class="field-label" for="final-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}">Final term</label><input class="form-control form-control-small" id="final-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}" name="final_term" type="number" min="1" max="5" step="0.01" value="{{ $grade->final_term }}"><label class="field-label" for="remarks-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}">Remark</label><select class="form-control form-control-small" id="remarks-{{ $grade->enrollment_id }}-{{ $grade->subject_id }}" name="remarks"><option value="In progress">In progress</option><option value="Incomplete" @selected($grade->remarks === 'Incomplete')>Incomplete</option></select><button class="button button-primary button-small" type="submit">Save grades</button></form></details></td></tr>
+                @endforeach
+            </tbody></table></div>
+            <div class="pagination-row">{{ $grades->links() }}</div>
+        @else
+            <div class="empty-state"><span class="empty-mark" aria-hidden="true">↗</span><h2>No approved subjects to encode.</h2><p>When the registrar approves applications with selected subjects, they will appear here.</p></div>
+        @endif
+    </section>
+@endsection
