@@ -17,25 +17,15 @@ services:
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        fromDatabase:
-          name: bcc-enrollment-db
-          property: host
+        value: dpg-db032megekts73805mcg-a.renderdb
       - key: DB_PORT
-        fromDatabase:
-          name: bcc-enrollment-db
-          property: port
+        value: 5432
       - key: DB_DATABASE
-        fromDatabase:
-          name: bcc-enrollment-db
-          property: database
+        value: bcc_enrollment
       - key: DB_USERNAME
-        fromDatabase:
-          name: bcc-enrollment-db
-          property: user
+        value: bcc_user
       - key: DB_PASSWORD
-        fromDatabase:
-          name: bcc-enrollment-db
-          property: password
+        value: P5s3z8bM6rN9qW2x
 
 databases:
   - name: bcc-enrollment-db

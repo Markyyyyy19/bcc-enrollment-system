@@ -29,8 +29,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Copy environment file if it doesn't exist
 RUN if [ ! -f .env ]; then cp .env.example .env; fi
 
-# Generate application key if not set
-RUN php artisan key:generate --ansi
+# Generate application key if not set (will be overridden by env var if set)
+RUN php artisan key:generate --ansi || true
 
 # Set permissions
 RUN chown -R www-data:www-data /app \
