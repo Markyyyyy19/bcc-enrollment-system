@@ -12,6 +12,10 @@ services:
         generateValue: true
       - key: APP_DEBUG
         value: false
+      - key: APP_URL
+        value: https://bcc-enrollment.onrender.com
+      - key: ASSET_URL
+        value: https://bcc-enrollment.onrender.com
       - key: LOG_CHANNEL
         value: errorlog
       - key: DB_CONNECTION
