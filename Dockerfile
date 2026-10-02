@@ -32,10 +32,15 @@ RUN if [ ! -f .env ]; then cp .env.example .env; fi
 # Generate application key if not set (will be overridden by env var if set)
 RUN php artisan key:generate --ansi || true
 
-# Set permissions
-RUN chown -R www-data:www-data /app \
-    && chmod -R 755 /app/storage \
-    && chmod -R 755 /app/bootstrap/cache
+# Create necessary directories and set permissions
+RUN mkdir -p /app/storage/framework/cache \
+    /app/storage/framework/sessions \
+    /app/storage/framework/views \
+    /app/storage/logs \
+    /app/bootstrap/cache \
+    && chown -R www-data:www-data /app \
+    && chmod -R 775 /app/storage \
+    && chmod -R 775 /app/bootstrap/cache
 
 # Expose port
 EXPOSE 8000
