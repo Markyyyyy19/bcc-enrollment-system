@@ -25,7 +25,7 @@ services:
       - key: DB_USERNAME
         value: bcc_user
       - key: DB_PASSWORD
-        value: P5s3z8bM6rN9qW2x
+        value: TqrNxpV7Nnbyrttahzdt3g0pu5r48jCf
 
 databases:
   - name: bcc-enrollment-db
